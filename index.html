@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firmansyah Azhari | CV Website</title>
+  <style>
+    :root {
+      --navy: #2f3a4e;
+      --navy-dark: #263143;
+      --navy-soft: #44536b;
+      --paper: #ffffff;
+      --bg: #f4f6fa;
+      --text: #1f2937;
+      --muted: #596579;
+      --line: #d8dee8;
+      --accent: #5f738f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .cv-page {
+      max-width: 1140px;
+      margin: 32px auto;
+      background: var(--paper);
+      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+      overflow: hidden;
+    }
+
+    .top {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      min-height: 310px;
+      background: var(--paper);
+    }
+
+    .photo-block {
+      background: var(--navy);
+      border-bottom-right-radius: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 42px;
+    }
+
+    .photo-wrap {
+      width: 205px;
+      height: 205px;
+      border-radius: 50%;
+      border: 8px solid rgba(255,255,255,0.18);
+      overflow: hidden;
+      background: var(--navy-soft);
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .identity {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 46px 64px;
+    }
+
+    .identity h1 {
+      font-size: clamp(42px, 6vw, 70px);
+      line-height: 1.05;
+      letter-spacing: 8px;
+      color: var(--navy);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .identity .role {
+      color: var(--navy);
+      font-size: 26px;
+      letter-spacing: 9px;
+      text-transform: uppercase;
+    }
+
+    .contact-bar {
+      margin: 28px 32px 34px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 999px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      align-items: center;
+      padding: 20px 52px;
+      font-size: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-item svg {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 auto;
+      opacity: 0.9;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+    }
+
+    .sidebar {
+      background: var(--navy);
+      color: #fff;
+      border-top-right-radius: 70px;
+      padding: 72px 44px 64px;
+      min-height: 1000px;
+    }
+
+    .main {
+      padding: 70px 64px 70px;
+    }
+
+    .section {
+      margin-bottom: 34px;
+    }
+
+    .section-title {
+      font-size: 30px;
+      letter-spacing: 8px;
+      line-height: 1;
+      font-weight: 800;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid currentColor;
+      color: inherit;
+    }
+
+    .sidebar .section-title {
+      color: #fff;
+      border-color: rgba(255,255,255,0.75);
+    }
+
+    .main .section-title {
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .edu-item {
+      margin-bottom: 30px;
+    }
+
+    .edu-item h3 {
+      font-size: 21px;
+      line-height: 1.25;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .edu-item p,
+    .skill-list li,
+    .language-list li {
+      color: rgba(255,255,255,0.88);
+      font-size: 18px;
+    }
+
+    .skill-list,
+    .language-list {
+      list-style: none;
+      display: grid;
+      gap: 7px;
+    }
+
+    .about-text {
+      font-size: 17px;
+      text-align: justify;
+      color: #111827;
+    }
+
+    .experience-item {
+      margin-bottom: 28px;
+    }
+
+    .job-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 8px;
+    }
+
+    .job-title {
+      font-size: 25px;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.25;
+    }
+
+    .period {
+      font-size: 17px;
+      color: #111827;
+      white-space: nowrap;
+      padding-top: 3px;
+    }
+
+    .company {
+      font-size: 18px;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+
+    .description {
+      font-size: 17px;
+      color: #111827;
+      text-align: justify;
+    }
+
+    .floating-actions {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      display: flex;
+      gap: 10px;
+      z-index: 20;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      background: var(--navy);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.22);
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: var(--navy);
+      border: 1px solid var(--line);
+    }
+
+    .template-note {
+      max-width: 1140px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .cv-page {
+        margin: 0;
+      }
+
+      .top,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-block,
+      .sidebar {
+        border-radius: 0;
+      }
+
+      .identity {
+        padding: 34px 28px;
+        text-align: center;
+      }
+
+      .identity h1 {
+        letter-spacing: 4px;
+      }
+
+      .identity .role {
+        font-size: 20px;
+        letter-spacing: 5px;
+      }
+
+      .contact-bar {
+        grid-template-columns: 1fr;
+        border-radius: 22px;
+        padding: 22px;
+      }
+
+      .sidebar,
+      .main {
+        padding: 42px 28px;
+        min-height: unset;
+      }
+
+      .section-title {
+        font-size: 25px;
+        letter-spacing: 5px;
+      }
+
+      .job-head {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .period {
+        white-space: normal;
+      }
+
+      .floating-actions {
+        position: static;
+        justify-content: center;
+        margin: 24px 0;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .cv-page {
+        margin: 0;
+        box-shadow: none;
+      }
+
+      .floating-actions,
+      .template-note {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!--
+    MULTI-USER CV WEBSITE TEMPLATE
+    To reuse this website for another person, edit the data inside CV_DATA below.
+  -->
+
+  <div class="cv-page" id="cvRoot"></div>
+
+  <div class="floating-actions">
+    <button class="btn" onclick="window.print()">Download / Print PDF</button>
+    <a class="btn secondary" href="mailto:Firmansyahazharikuy6@gmail.comm">Contact</a>
+  </div>
+
+  <p class="template-note">Editable CV website template. Replace the CV_DATA content to reuse it for another person.</p>
+
+  <script>
+    const CV_DATA = {
+      name: "Firmansyah Azhari",
+      role: "IT Engineer",
+      photo: "data:image/jpeg;base64,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",
+      phone: "+62 8123-7577-519",
+      email: "Firmansyahazharikuy6@gmail.com",
+      website: "https://firmansyahazharikuy6-spec.github.io/CV/",
+      about: "A versatile professional with experience in web development, retail operations, and electrical maintenance. Skilled in developing digital systems, managing inventory and sales records, supporting technical troubleshooting, and improving operational workflows. Able to combine technical expertise and business understanding to deliver practical solutions that support efficiency and daily operations.",
+      education: [
+        { title: "Bachelor of Design", school: "Diponegoro University", year: "2021 - 2024" },
+        { title: "Bachelor of Design", school: "Semarang University", year: "2018 - 2021" },
+        { title: "Vocational High School in Mechatronic Engineering", school: "SMK 7 Semarang", year: "2014 - 2018" }
+      ],
+      skills: [
+        "Web Development",
+        "Database Management",
+        "Electrical Maintenance",
+        "API Integration",
+        "Operational Support",
+        "Problem Solving",
+        "Technical Troubleshooting",
+        "Robotic Maintenance",
+        "Team Collaboration"
+      ],
+      languages: ["English", "Indonesian"],
+      experience: [
+        {
+          title: "Website Development",
+          company: "Freelance Website Developer",
+          period: "August 2024 - May 2026",
+          description: "Developed LESAVI, a web-based internal monitoring system to process and centralize raw data across AM Performance, Sales Funneling, and Sales Activity. Built Telegram-based reminder and chatbot features to support Account Managers and management teams in monitoring revenue, customer data, KPI metrics, conversion rate, achievement rate, and total project value. Collaborated with internal users and corporate customers to translate business requirements into practical digital solutions."
+        },
+        {
+          title: "Store Operations Assistant to Business Owner",
+          company: "Retail Store",
+          period: "June 2022 - February 2024",
+          description: "Assisted the business owner in managing daily store operations, including inventory control, sales records, supplier coordination, customer service, product display, and administrative reporting. Supported business activities by maintaining organized stock data, monitoring transactions, and ensuring smooth store operations."
+        },
+        {
+          title: "Hotel Electrical Technician",
+          company: "Hotel Industry",
+          period: "December 2019 - January 2022",
+          description: "Maintained and repaired electrical systems within hotel facilities to support daily operations and guest comfort. Assisted in troubleshooting electrical issues, checking power installations, maintaining lighting systems, supporting equipment maintenance, and ensuring technical problems were handled safely and efficiently. Worked with the maintenance team to keep hotel facilities operational and minimize service disruptions."
+        }
+      ]
+    };
+
+    const icons = {
+      phone: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>`,
+      email: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>`,
+      web: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.93 6h-2.95a15.6 15.6 0 00-1.38-3.15A8.03 8.03 0 0118.93 8zM12 4.04A14.1 14.1 0 0113.91 8h-3.82A14.1 14.1 0 0112 4.04zM4.26 14a8.15 8.15 0 010-4h3.33a16.52 16.52 0 000 4H4.26zm.81 2h2.95c.32 1.1.79 2.16 1.38 3.15A8.03 8.03 0 015.07 16zm2.95-8H5.07A8.03 8.03 0 019.4 4.85 15.6 15.6 0 008.02 8zM12 19.96A14.1 14.1 0 0110.09 16h3.82A14.1 14.1 0 0112 19.96zM14.34 14H9.66a14.3 14.3 0 010-4h4.68a14.3 14.3 0 010 4zm.26 5.15c.59-.99 1.06-2.05 1.38-3.15h2.95a8.03 8.03 0 01-4.33 3.15zM16.41 14a16.52 16.52 0 000-4h3.33a8.15 8.15 0 010 4h-3.33z"/></svg>`
+    };
+
+    function renderCV(data) {
+      const root = document.getElementById("cvRoot");
+      root.innerHTML = `
+        <header class="top">
+          <div class="photo-block">
+            <div class="photo-wrap"><img src="${data.photo}" alt="${data.name} profile photo"></div>
+          </div>
+          <div class="identity">
+            <h1>${data.name}</h1>
+            <div class="role">${data.role}</div>
+          </div>
+        </header>
+
+        <section class="contact-bar">
+          <div class="contact-item">${icons.phone}<span>${data.phone}</span></div>
+          <div class="contact-item">${icons.email}<span>${data.email}</span></div>
+          <a class="contact-item" href="${data.website}" target="_blank" rel="noopener">${icons.web}<span>${data.website}</span></a>
+        </section>
+
+        <section class="layout">
+          <aside class="sidebar">
+            <section class="section">
+              <h2 class="section-title">Education</h2>
+              ${data.education.map(item => `
+                <div class="edu-item">
+                  <h3>${item.title}</h3>
+                  <p>${item.school}</p>
+                  <p>${item.year}</p>
+                </div>
+              `).join("")}
+            </section>
+
+            <section class="section">
+              <h2 class="section-title">Skills</h2>
+              <ul class="skill-list">
+                ${data.skills.map(skill => `<li>${skill}</li>`).join("")}
+              </ul>
+            </section>
+
+            <section class="section">
+              <h2 class="section-title">Language</h2>
+              <ul class="language-list">
+                ${data.languages.map(language => `<li>${language}</li>`).join("")}
+              </ul>
+            </section>
+          </aside>
+
+          <main class="main">
+            <section class="section">
+              <h2 class="section-title">About me</h2>
+              <p class="about-text">${data.about}</p>
+            </section>
+
+            <section class="section">
+              <h2 class="section-title">Experience</h2>
+              ${data.experience.map(job => `
+                <article class="experience-item">
+                  <div class="job-head">
+                    <h3 class="job-title">${job.title}</h3>
+                    <div class="period">${job.period}</div>
+                  </div>
+                  <div class="company">${job.company}</div>
+                  <p class="description">${job.description}</p>
+                </article>
+              `).join("")}
+            </section>
+          </main>
+        </section>
+      `;
+    }
+
+    renderCV(CV_DATA);
+  </script>
+</body>
+</html>
