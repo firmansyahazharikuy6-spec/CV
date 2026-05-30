@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Firmansyah Azhari | Profile Website</title>
+
+  <style>
+    :root {
+      --navy: #2f3a4e;
+      --navy-dark: #20293a;
+      --blue: #596f91;
+      --soft-blue: #eef3f9;
+      --white: #ffffff;
+      --bg: #f5f7fb;
+      --text: #1f2937;
+      --muted: #667085;
+      --line: #d9e0ea;
+      --shadow: 0 24px 70px rgba(32, 41, 58, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #243244;
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: rgba(255,255,255,0.78);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      padding: 0;
+      display: flex;
+      align-items: center;
+      background-color: #263647;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.16) 1px, transparent 1.2px);
+      background-size: 28px 28px, 28px 28px, 28px 28px;
+    }
+
+    .hero-card {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      overflow: visible;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 72px);
+    }
+
+    .hero-photo-panel {
+      display: none;
+    }
+
+    .hero-photo-panel::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      right: -90px;
+      top: -80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .profile-photo {
+      width: 280px;
+      height: 360px;
+      border-radius: 28px;
+      object-fit: cover;
+      object-position: center top;
+      border: 8px solid rgba(255,255,255,0.16);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .quick-info {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
+      margin-top: 28px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .quick-info strong {
+      color: #fff;
+    }
+
+    .hero-content {
+      padding: 90px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: calc(100vh - 72px);
+    }
+
+    .eyebrow {
+      color: rgba(255,255,255,0.72);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(44px, 6vw, 76px);
+      line-height: 1.03;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .headline {
+      font-size: 22px;
+      color: rgba(255,255,255,0.84);
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .hero-content p {
+      color: rgba(255,255,255,0.72);
+      font-size: 16px;
+      max-width: 680px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 20px;
+      background: var(--navy);
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 14px;
+      box-shadow: 0 14px 34px rgba(47, 58, 78, 0.22);
+      transition: 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn.secondary {
+      background: var(--soft-blue);
+      color: var(--navy);
+      box-shadow: none;
+      border: 1px solid var(--line);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .section {
+      padding: 42px 0;
+    }
+
+    .section-header {
+      margin-bottom: 22px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .section-title {
+      color: var(--navy);
+      font-size: 30px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 560px;
+      font-size: 15px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 14px 40px rgba(32, 41, 58, 0.06);
+    }
+
+    .card h3 {
+      color: var(--navy);
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .skill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      background: var(--soft-blue);
+      color: var(--navy);
+      border: 1px solid var(--line);
+      padding: 10px 13px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .portfolio-card {
+      min-height: 220px;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 54px rgba(32, 41, 58, 0.12);
+    }
+
+    .portfolio-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .portfolio-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .portfolio-tags span {
+      background: var(--soft-blue);
+      color: var(--navy);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .portfolio-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.58);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+    }
+
+    .portfolio-modal.active {
+      display: flex;
+    }
+
+    .portfolio-popup {
+      width: min(520px, 100%);
+      max-height: calc(100vh - 44px);
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 28px;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.25);
+      padding: 32px;
+      transform: scale(0.96);
+      opacity: 0;
+      animation: popupCenter 0.22s ease forwards;
+    }
+
+    @keyframes popupCenter {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .popup-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 22px;
+    }
+
+    .popup-top h3 {
+      color: var(--navy);
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .popup-close {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--soft-blue);
+      color: var(--navy);
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 18px;
+      flex: 0 0 auto;
+    }
+
+    .popup-meta {
+      color: var(--blue);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .popup-description {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .popup-list {
+      padding-left: 18px;
+      color: var(--muted);
+      display: grid;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .popup-link {
+      display: inline-flex;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #fff;
+      padding: 11px 16px;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      box-shadow: 0 14px 40px rgba(32, 41, 58, 0.06);
+    }
+
+    .timeline-item h3 {
+      color: var(--navy);
+      font-size: 22px;
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .company {
+      color: var(--text);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .period {
+      color: var(--blue);
+      font-weight: 800;
+      white-space: nowrap;
+      font-size: 14px;
+      padding-top: 3px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .contact-panel {
+      background: linear-gradient(145deg, var(--navy-dark), var(--navy));
+      color: #fff;
+      border-radius: 30px;
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel h2 {
+      font-size: 30px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .contact-panel p,
+    .contact-list li {
+      color: rgba(255,255,255,0.82);
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      font-size: 15px;
+    }
+
+    .contact-list strong {
+      color: #fff;
+      display: inline-block;
+      min-width: 76px;
+    }
+
+    footer {
+      color: var(--muted);
+      text-align: center;
+      padding: 28px 0 42px;
+      font-size: 13px;
+    }
+
+    /* Hidden A4 CV used only for the Download CV PDF button */
+    #cvSheet {
+      position: fixed;
+      left: -1200px;
+      top: 0;
+      width: 794px;
+      height: 1123px;
+      background: #fff;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111827;
+    }
+
+    .cv-top {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      height: 204px;
+      background: #fff;
+    }
+
+    .cv-photo-block {
+      background: var(--navy);
+      border-bottom-right-radius: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 34px;
+    }
+
+    .cv-photo-wrap {
+      width: 122px;
+      height: 122px;
+      border-radius: 50%;
+      border: 8px solid rgba(255,255,255,0.18);
+      overflow: hidden;
+      background: var(--navy-dark);
+    }
+
+    .cv-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .cv-identity {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 42px 48px;
+    }
+
+    .cv-identity h1 {
+      font-size: 43px;
+      line-height: 1.05;
+      letter-spacing: 5px;
+      color: var(--navy);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .cv-role {
+      color: var(--navy);
+      font-size: 22px;
+      letter-spacing: 7px;
+      text-transform: uppercase;
+    }
+
+    .cv-contact-bar {
+      margin: 19px 23px 23px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 68px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      align-items: center;
+      padding: 16px 24px;
+      font-size: 10px;
+    }
+
+    .cv-contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      overflow-wrap: anywhere;
+      text-align: center;
+    }
+
+    .cv-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      height: 877px;
+    }
+
+    .cv-sidebar {
+      background: var(--navy);
+      color: #fff;
+      border-top-right-radius: 92px;
+      padding: 56px 30px 34px;
+      height: 877px;
+    }
+
+    .cv-main {
+      padding: 56px 38px 30px 46px;
+      height: 877px;
+      overflow: hidden;
+    }
+
+    .cv-section {
+      margin-bottom: 18px;
+    }
+
+    .cv-section-title {
+      font-size: 25px;
+      letter-spacing: 6px;
+      line-height: 1;
+      font-weight: 800;
+      margin-bottom: 16px;
+      padding-bottom: 11px;
+      border-bottom: 2px solid currentColor;
+      color: inherit;
+    }
+
+    .cv-edu-item {
+      margin-bottom: 17px;
+    }
+
+    .cv-edu-item h3 {
+      font-size: 13px;
+      line-height: 1.2;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+
+    .cv-edu-item p,
+    .cv-skill-list li,
+    .cv-language-list li {
+      color: rgba(255,255,255,0.88);
+      font-size: 11px;
+      line-height: 1.25;
+    }
+
+    .cv-skill-list,
+    .cv-language-list {
+      list-style: none;
+      display: grid;
+      gap: 3px;
+    }
+
+    .cv-main .cv-section-title {
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .cv-about-text,
+    .cv-description {
+      font-size: 9.5px;
+      line-height: 1.25;
+      text-align: justify;
+      color: #111827;
+    }
+
+    .cv-experience-item {
+      margin-bottom: 12px;
+    }
+
+    .cv-job-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 4px;
+    }
+
+    .cv-job-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.15;
+    }
+
+    .cv-period {
+      font-size: 9px;
+      color: #111827;
+      white-space: nowrap;
+      padding-top: 1px;
+    }
+
+    .cv-company {
+      font-size: 10px;
+      color: #111827;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 800px) {
+      .container {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .hero {
+        padding-top: 30px;
+      }
+
+      .hero-card,
+      .grid-3,
+      .timeline-item,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo-panel,
+      .hero-content,
+      .contact-panel {
+        padding: 28px;
+      }
+
+      .profile-photo {
+        width: 230px;
+        height: 300px;
+      }
+
+      h1 {
+        letter-spacing: 2px;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .period {
+        white-space: normal;
+      }
+
+      .portfolio-modal {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">Muhammad Firmansyah Azhari</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <aside class="hero-photo-panel">
+            <img id="sitePhoto" class="profile-photo" src="" alt="Muhammad Firmansyah Azhari profile photo" />
+            <div class="quick-info">
+              <span><strong>Role:</strong> IT Engineer</span>
+              <span><strong>Location:</strong> Indonesia</span>
+              <span><strong>Email:</strong> Firmansyahazhariku6@gmail.com</span>
+            </div>
+          </aside>
+
+          <section class="hero-content">
+            <div class="eyebrow">Welcome to My Profile</div>
+            <h1>Muhammad Firmansyah Azhari</h1>
+            <div class="headline">IT Engineer | Web Development | Portfolio</div>
+            <p>
+              Personal profile website, professional CV, and selected website portfolio.
+            </p>
+            <div class="actions">
+              <button class="btn" id="downloadBtn" onclick="downloadCV()">Download CV PDF</button>
+              <a class="btn secondary" href="mailto:Firmansyahazhariku6@gmail.com">Contact Me</a>
+              <a class="btn secondary" href="#portfolio">View Portfolio</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">About</h2>
+          <p class="section-subtitle">Profile summary focused on technical capability, operational experience, and practical business support.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Digital Systems</h3>
+            <p>Experienced in developing web-based systems, dashboard reporting, API integration, and digital workflow support.</p>
+          </div>
+          <div class="card">
+            <h3>Operations</h3>
+            <p>Handled inventory control, sales records, supplier coordination, customer service, and daily retail operations.</p>
+          </div>
+          <div class="card">
+            <h3>Technical Support</h3>
+            <p>Supported fiber optic migration, electrical maintenance, technical troubleshooting, routine checks, and operational reliability.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Skills</h2>
+          <p class="section-subtitle">A balanced skill set covering web development, operational support, and technical maintenance.</p>
+        </div>
+        <div class="card">
+          <div class="skill-cloud" id="skillCloud"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Portfolio</h2>
+          <p class="section-subtitle">Three selected website portfolio items. Click each card to open the side popup.</p>
+        </div>
+        <div class="grid-3" id="portfolioList"></div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Experience</h2>
+          <p class="section-subtitle">Work history covering website development, retail operations, fiber optic migration, and technical maintenance.</p>
+        </div>
+        <div class="timeline" id="experienceList"></div>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Education</h2>
+          <p class="section-subtitle">Academic and vocational background listed in a clean profile format.</p>
+        </div>
+        <div class="grid-3" id="educationList"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-panel">
+          <div>
+            <h2>Contact</h2>
+            <p>Available for professional opportunities, project collaboration, and technical support roles.</p>
+          </div>
+          <ul class="contact-list">
+            <li><strong>Phone</strong> +62 8123-7577-519</li>
+            <li><strong>Email</strong> <a href="mailto:Firmansyahazhariku6@gmail.com">Firmansyahazhariku6@gmail.com</a></li>
+            <li><strong>Website</strong> <a href="https://firmansyahazhariku6-spec.github.io/CV/" target="_blank" rel="noopener">firmansyahazhariku6-spec.github.io/CV/</a></li>
+            <li><strong>Location</strong> Indonesia</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Muhammad Firmansyah Azhari. Profile Website.
+  </footer>
+
+  <div class="portfolio-modal" id="portfolioModal" onclick="closePortfolio(event)">
+    <div class="portfolio-popup" onclick="event.stopPropagation()">
+      <div class="popup-top">
+        <h3 id="popupTitle">Portfolio Title</h3>
+        <button class="popup-close" onclick="closePortfolio()">×</button>
+      </div>
+      <div class="popup-meta" id="popupMeta"></div>
+      <p class="popup-description" id="popupDescription"></p>
+      <ul class="popup-list" id="popupFeatures"></ul>
+      <a class="popup-link" id="popupLink" href="#" target="_blank" rel="noopener">View Project</a>
+    </div>
+  </div>
+
+  <div id="cvSheet"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script>
+    const CV_DATA = {
+      name: "Muhammad Firmansyah Azhari",
+      role: "IT Engineer",
+      photo: "profile-photo.png",
+      phone: "+62 8123-7577-519",
+      email: "Firmansyahazhariku6@gmail.com",
+      website: "https://firmansyahazhariku6-spec.github.io/CV/",
+      about: "A versatile professional with experience in web development, retail operations, fiber optic migration, and electrical maintenance. Skilled in developing digital systems, managing inventory and sales records, supporting technical troubleshooting, and improving operational workflows. Able to combine technical expertise and business understanding to deliver practical solutions that support efficiency and daily operations.",
+      education: [
+        { title: "Bachelor of Law", school: "Diponegoro University", year: "2021 - 2024" },
+        { title: "Bachelor of Electo", school: "Semarang University", year: "2018 - 2021" },
+        { title: "Vocational High School in Mechatronic Engineering", school: "SMK 7 Semarang", year: "2014 - 2018" }
+      ],
+      skills: [
+        "Web Development",
+        "Database Management",
+        "Electrical Maintenance",
+        "API Integration",
+        "Fiber Optic Migration",
+        "Operational Support",
+        "Problem Solving",
+        "Technical Troubleshooting",
+        "Robotic Maintenance",
+        "Team Collaboration"
+      ],
+      languages: ["English", "Indonesian"],
+      portfolio: [
+        {
+          title: "Website Rohani",
+          category: "Religious Website",
+          short: "A website portfolio project with a spiritual and informational theme.",
+          description: "Developed a religious-themed website designed to present spiritual content, information, and digital access in a clean and accessible format.",
+          features: ["Religious content website", "Responsive web layout", "Clean navigation structure", "Online public access"],
+          link: "https://firmansyahazharikuy6-spec.github.io/www.WebsiteRohani.co.id/"
+        },
+        {
+          title: "HS Rental Mobil Solo",
+          category: "Rental Car Website",
+          short: "A rental car website portfolio project for vehicle information, service promotion, and customer access.",
+          description: "Developed a rental car website designed to present vehicle rental services, business information, customer access, and online promotional content in a clean and accessible layout.",
+          features: ["Rental service website", "Vehicle information section", "Responsive web layout", "Online public access"],
+          link: "https://firmansyahazharikuy6-spec.github.io/HSRentalmobilsolo.github.io/"
+        },
+        {
+          title: "SXS Website",
+          category: "Company Profile Website",
+          short: "A company profile website portfolio project with public online access.",
+          description: "Developed a company profile website designed to present business identity, service information, and public-facing digital content in a clean and accessible format.",
+          features: ["Company profile website", "Service information section", "Responsive web layout", "Online public access"],
+          link: "https://sxs.web.id/"
+        }
+      ],
+      experience: [
+        {
+          title: "Website Development",
+          company: "Freelance Website Developer",
+          period: "August 2024 - May 2026",
+          description: "Developed LESAVI, a web-based internal monitoring system to process and centralize raw data across AM Performance, Sales Funneling, and Sales Activity. Built Telegram-based reminder and chatbot features to support Account Managers and management teams in monitoring revenue, customer data, KPI metrics, conversion rate, achievement rate, and total project value. Collaborated with internal users and corporate customers to translate business requirements into practical digital solutions."
+        },
+        {
+          title: "Store Operations Assistant to Business Owner",
+          company: "Retail Store",
+          period: "June 2022 - February 2024",
+          description: "Assisted the business owner in managing daily store operations, including inventory control, sales records, supplier coordination, customer service, product display, and administrative reporting. Supported business activities by maintaining organized stock data, monitoring transactions, and ensuring smooth store operations."
+        },
+        {
+          title: "Hotel Electrical Technician",
+          company: "Hotel Industry",
+          period: "December 2020 - February 2022",
+          description: "Maintained and repaired electrical systems within hotel facilities to support daily operations and guest comfort. Assisted in troubleshooting electrical issues, checking power installations, maintaining lighting systems, supporting equipment maintenance, and ensuring technical problems were handled safely and efficiently."
+        },
+        {
+          title: "Fiber Optic Migration Technician",
+          company: "Telkom Akses Indonesia — under Telkom Indonesia",
+          period: "December 2019 - November 2020",
+          description: "Worked as a migration technician responsible for supporting the transition from legacy cable networks to fiber optic devices. Assisted in cable migration, fiber optic installation support, device replacement, field troubleshooting, connectivity checks, and technical coordination to ensure stable network service during the migration process."
+        },
+        {
+          title: "Brand Ambassador Intern",
+          company: "International Model United Nations (IMUN)",
+          period: "August 2019 - December 2019",
+          description: "Supported outreach and promotional activities for International Model United Nations programs under the auspices of WHO and UNESCO, with a focus on youth engagement, diplomacy, leadership, and global awareness. Assisted in sharing program information, communicating with prospective participants, promoting international events, and representing the program professionally across digital and social communication channels."
+        }
+      ]
+    };
+
+    function renderWebsite(data) {
+      document.getElementById("sitePhoto").src = data.photo;
+
+      document.getElementById("skillCloud").innerHTML = data.skills
+        .map(skill => `<span class="skill">${skill}</span>`)
+        .join("");
+
+      document.getElementById("portfolioList").innerHTML = data.portfolio
+        .map((item, index) => `
+          <article class="card portfolio-card" onclick="openPortfolio(${index})">
+            <div class="portfolio-number">${String(index + 1).padStart(2, "0")}</div>
+            <h3>${item.title}</h3>
+            <p>${item.short}</p>
+            <div class="portfolio-tags">
+              <span>${item.category}</span>
+              <span>Website</span>
+            </div>
+          </article>
+        `)
+        .join("");
+
+      document.getElementById("experienceList").innerHTML = data.experience
+        .map(job => `
+          <article class="timeline-item">
+            <div>
+              <h3>${job.title}</h3>
+              <div class="company">${job.company}</div>
+              <p>${job.description}</p>
+            </div>
+            <div class="period">${job.period}</div>
+          </article>
+        `)
+        .join("");
+
+      document.getElementById("educationList").innerHTML = data.education
+        .map(edu => `
+          <article class="card">
+            <h3>${edu.title}</h3>
+            <p>${edu.school}</p>
+            <p>${edu.year}</p>
+          </article>
+        `)
+        .join("");
+    }
+
+    function openPortfolio(index) {
+      const item = CV_DATA.portfolio[index];
+      if (!item) return;
+
+      document.getElementById("popupTitle").textContent = item.title;
+      document.getElementById("popupMeta").textContent = item.category;
+      document.getElementById("popupDescription").textContent = item.description;
+      document.getElementById("popupFeatures").innerHTML = item.features.map(feature => `<li>${feature}</li>`).join("");
+      document.getElementById("popupLink").href = item.link;
+      document.getElementById("popupLink").style.display = item.link === "#" ? "none" : "inline-flex";
+      document.getElementById("portfolioModal").classList.add("active");
+    }
+
+    function closePortfolio(event) {
+      if (event && event.target.id !== "portfolioModal") return;
+      document.getElementById("portfolioModal").classList.remove("active");
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") closePortfolio();
+    });
+
+    function renderCVSheet(data) {
+      document.getElementById("cvSheet").innerHTML = `
+        <header class="cv-top">
+          <div class="cv-photo-block">
+            <div class="cv-photo-wrap"><img src="${data.photo}" alt="${data.name} profile photo"></div>
+          </div>
+          <div class="cv-identity">
+            <h1>${data.name}</h1>
+            <div class="cv-role">${data.role}</div>
+          </div>
+        </header>
+
+        <section class="cv-contact-bar">
+          <div class="cv-contact-item">☎ <span>${data.phone}</span></div>
+          <div class="cv-contact-item">✉ <span>${data.email}</span></div>
+          <div class="cv-contact-item">● <span>${data.website}</span></div>
+        </section>
+
+        <section class="cv-layout">
+          <aside class="cv-sidebar">
+            <section class="cv-section">
+              <h2 class="cv-section-title">Education</h2>
+              ${data.education.map(item => `
+                <div class="cv-edu-item">
+                  <h3>${item.title}</h3>
+                  <p>${item.school}</p>
+                  <p>${item.year}</p>
+                </div>
+              `).join("")}
+            </section>
+
+            <section class="cv-section">
+              <h2 class="cv-section-title">Skills</h2>
+              <ul class="cv-skill-list">
+                ${data.skills.map(skill => `<li>${skill}</li>`).join("")}
+              </ul>
+            </section>
+
+            <section class="cv-section">
+              <h2 class="cv-section-title">Language</h2>
+              <ul class="cv-language-list">
+                ${data.languages.map(language => `<li>${language}</li>`).join("")}
+              </ul>
+            </section>
+          </aside>
+
+          <main class="cv-main">
+            <section class="cv-section">
+              <h2 class="cv-section-title">About me</h2>
+              <p class="cv-about-text">${data.about}</p>
+            </section>
+
+            <section class="cv-section">
+              <h2 class="cv-section-title">Experience</h2>
+              ${data.experience.map(job => `
+                <article class="cv-experience-item">
+                  <div class="cv-job-head">
+                    <h3 class="cv-job-title">${job.title}</h3>
+                    <div class="cv-period">${job.period}</div>
+                  </div>
+                  <div class="cv-company">${job.company}</div>
+                  <p class="cv-description">${job.description}</p>
+                </article>
+              `).join("")}
+            </section>
+          </main>
+        </section>
+      `;
+    }
+
+    async function downloadCV() {
+      const button = document.getElementById("downloadBtn");
+      const cv = document.getElementById("cvSheet");
+      const previousText = button.textContent;
+
+      if (!window.html2canvas || !window.jspdf) {
+        alert("PDF library is not loaded yet. Please check your internet connection, then reload the page.");
+        return;
+      }
+
+      try {
+        button.textContent = "Preparing PDF...";
+        button.disabled = true;
+
+        const canvas = await html2canvas(cv, {
+          scale: 2.5,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: "#ffffff",
+          logging: false,
+          windowWidth: 1200,
+          windowHeight: 1123
+        });
+
+        const imageData = canvas.toDataURL("image/png", 1.0);
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({
+          orientation: "portrait",
+          unit: "mm",
+          format: "a4",
+          compress: true
+        });
+
+        pdf.addImage(imageData, "PNG", 0, 0, 210, 297, undefined, "FAST");
+        pdf.save("Muhammad_Firmansyah_Azhari_CV.pdf");
+      } catch (error) {
+        console.error(error);
+        alert("PDF download failed. Please reload the page and try again.");
+      } finally {
+        button.textContent = previousText;
+        button.disabled = false;
+      }
+    }
+
+    renderWebsite(CV_DATA);
+    renderCVSheet(CV_DATA);
+  </script>
+</body>
+</html>
